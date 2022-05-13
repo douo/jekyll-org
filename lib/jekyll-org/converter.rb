@@ -81,7 +81,12 @@ module Jekyll
 
       # see https://github.com/bdewey/org-ruby/blob/master/lib/org-ruby/parser.rb
       def parser_options
-        org_config.fetch("parser_options", { markup_file: 'html.tags.yml' })
+        dict = org_config.fetch("parser_options", { markup_file: 'html.tags.yml' })
+        # duplicate all string key to symbol
+        dict.keys
+          .select {|k| k.is_a?(String)}
+          .each {|k,v| dict[k.to_sym] = v}
+        return dict
       end
 
       def assign_setting(key, value, settings)
