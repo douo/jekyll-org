@@ -85,7 +85,7 @@ module Jekyll
         # duplicate all string key to symbol
         dict.keys
           .select {|k| k.is_a?(String)}
-          .each {|k,v| dict[k.to_sym] = dick[k]}
+          .each {|k,v| dict[k.to_sym] = dict[k]}
         return dict
       end
 
